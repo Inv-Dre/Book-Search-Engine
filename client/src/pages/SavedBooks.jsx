@@ -36,11 +36,11 @@ const SavedBooks = () => {
     }
 
     try {
-      const {data} = await removeBook({
+      const {response} = await removeBook({
         variable: {bookId}
       });
 
-      if (!data.ok) {
+      if (!response.ok) {
         throw new Error('something went wrong!');
       }
 
