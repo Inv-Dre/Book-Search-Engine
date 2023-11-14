@@ -7,10 +7,14 @@ const resolvers = {
     Query: {
       
         me: async (parent, args, context) =>{
+            try{
             if(context.user){
               return await User.findOne({ _id: context.user._id});
             }
             throw AuthenticationError;
+        } catch (error){
+            console.log(error)
+        }
         },
     },
 
@@ -28,6 +32,7 @@ const resolvers = {
             }
         },
         login: async (parent, {email, password}) => {
+            try{
             const user = await User.findOne({ email });
             
             if(!profile){
@@ -41,9 +46,13 @@ const resolvers = {
 
             const token = signToken(user);
             return {token, user};
+        } catch (error){
+            console.log(error)
+        }
         },
 
         saveBook: async (parent, {userId, input}, context ) => {
+            try{
             if (context.user){
                 return User.findOneAndUpdate(
                     {_id: userId},
@@ -53,11 +62,16 @@ const resolvers = {
                     new:true,
                     runValidators:true,
                 }
+                
                 );
             }
+            } catch (error){
+            console.log(error)
+        }
         },
 
         removeBook: async (parent, {userId, bookId}, context ) => {
+            try{
             if (context.user){
                 return User.findOneAndUpdate(
                         {_id: userId},
@@ -65,6 +79,9 @@ const resolvers = {
                         { new:true}
                     );
             }
+        } catch (error){
+            console.log(error)
+        }
         },
     }
 };
