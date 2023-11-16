@@ -5,7 +5,14 @@ query me{
     me{
       _id
       username
-      savedBooks
+      savedBooks{
+        authors
+        description
+        title
+        bookId
+        image
+        link
+      }
     }
 }
 `;

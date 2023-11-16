@@ -51,12 +51,12 @@ const resolvers = {
         }
         },
 
-        saveBook: async (parent, {userId, input}, context ) => {
+        saveBook: async (parent, {input}, context ) => {
             try{
             if (context.user){
                 return User.findOneAndUpdate(
-                    {_id: userId},
-                    {$addToSet:{savedBooks: input},
+                    {_id: context.user._id},
+                    {$addToSet:{savedBooks:input},
                 },
                 {
                     new:true,
@@ -70,12 +70,12 @@ const resolvers = {
         }
         },
 
-        removeBook: async (parent, {userId, bookId}, context ) => {
+        removeBook: async (parent, {bookId}, context ) => {
             try{
             if (context.user){
                 return User.findOneAndUpdate(
-                        {_id: userId},
-                        { $pull: { savedBooks: {bookId}}},
+                        {_id: context.user._id},
+                        {$pull: { savedBooks: {bookId}}},
                         { new:true}
                     );
             }
