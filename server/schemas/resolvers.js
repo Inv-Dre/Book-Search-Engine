@@ -35,7 +35,7 @@ const resolvers = {
             try{
             const user = await User.findOne({ email });
             
-            if(!profile){
+            if(!user){
                 throw AuthenticationError;
             }
             const correctPw = await user.isCorrectPassword(password);
