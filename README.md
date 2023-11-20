@@ -2,8 +2,9 @@
 
 ## Table of Contents
 - [Description](#description)
-- [Installation](#installation)
 - [Screenshot](#screenshot)
+- [Deployed-App](#deployed-app)
+
 
 
 ## Description
